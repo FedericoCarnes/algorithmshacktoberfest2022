@@ -1,44 +1,47 @@
+// Bubble sort in C++
+
 #include <iostream>
 using namespace std;
 
-void swap(int *var1, int *var2)
-{
-    int temp = *var1;
-    *var1 = *var2;
-    *var2 = temp;
+// perform bubble sort
+void bubbleSort(int array[], int size) {
+
+  // loop to access each array element
+  for (int step = 0; step < size; ++step) {
+      
+    // loop to compare array elements
+    for (int i = 0; i < size - step; ++i) {
+
+      // compare two adjacent elements
+      // change > to < to sort in descending order
+      if (array[i] > array[i + 1]) {
+
+        // swapping elements if elements
+        // are not in the intended order
+        int temp = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = temp;
+      }
+    }
+  }
 }
-//Here we will implement bubbleSort.
-void bubbleSort(int arr[], int n)
-{
-   int i, j;
-   for (i = 0; i < n-1; i++)
-       //Since, after each iteration rightmost i elements are sorted.
-       for (j = 0; j < n-i-1; j++) 
-           if (arr[j] > arr[j+1])
-               swap(&arr[j], &arr[j+1]);
+
+// print array
+void printArray(int array[], int size) {
+  for (int i = 0; i < size; ++i) {
+    cout << "  " << array[i];
+  }
+  cout << "\n";
 }
-// Function to print array.
-void display(int arr[], int size)
-{
-    int i;
-    for (i=0; i < size; i++)
-        cout << arr[i] << "\t";
-        
-    cout<<endl;
-}
-//Main function to run the program.
-int main()
-{
-    int array[] = {5, 3, 1, 9, 8, 2, 4,7};
-    int size = sizeof(array)/sizeof(array[0]);
-    
-    cout<<"Before bubble sort: \n";
-    display(array, size);//Calling display function to print unsorted array.
-    
-    bubbleSort(array, size);
-    
-    cout<<"After bubble sort: \n";
-    display(array, size);//Calling display function to print sorted array.
-    
-    return 0;
+
+int main() {
+  int data[] = {-2, 45, 0, 11, -9};
+  
+  // find array's length
+  int size = sizeof(data) / sizeof(data[0]);
+  
+  bubbleSort(data, size);
+  
+  cout << "Sorted Array in Ascending Order:\n";  
+  printArray(data, size);
 }
